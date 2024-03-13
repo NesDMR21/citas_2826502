@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="font-family: sans-serif;">
+    <h1>Actualizar Medico</h1>
+    <form method="post" action='/medicos/update/{{medico_update.id}}'>
+        <p class="form-group">
+            <label> Nombre: </label><input  type="text"
+                                    name="nombre"
+                                    value="{{ medico_update.nombre }}">
+        </p>
+        <p class="form-group">
+            <label >Apellido: </label><input type="text"
+                                    name="apellido"
+                                    value="{{ medico_update.apellidos }}">
+        </p>
+        <p class="form-group">
+            Tipo de Identificacion
+            <select name="ti" class="form-select" required>
+                <option
+                    {% if medico_update.tipo_identificacion == "CE" %}
+                        selected
+                    {% endif %}
+                > 
+                    CE 
+                </option
+                    {% if medico_update.tipo_identificacion == "CC" %}
+                        selected
+                    {% endif %}
+                >
+                    CC
+                </option>
+                </option
+                    {% if medico_update.tipo_identificacion == "VISA" %}
+                        selected
+                    {% endif %}
+                >
+                    VISA
+                </option>
+                </option
+                    {% if medico_update.tipo_identificacion == "PEP" %}
+                        selected
+                    {% endif %}
+                >
+                    PEP
+                </option>
+                {% for t in ti %}
+                    <option value="{{ t }}"> {{ t }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p class="form-group">
+            <label >Numero de Identificacion</label> <input type= "text"
+                                    name="ni"
+                                    value="{{ medico_update.numero_identificacion }}">          
+        </p>
+        <p class="form-group">
+            <label >Registro medico</label> <input type="text"
+                                    name="rm"
+                                    value="{{ medico_update.registro_medico }}">
+        </p>
+        <p class="form-group">
+            Especialidad
+            <select name="es" class="form-select" required>
+                {% for especialidad in especialidades %}
+                <option
+                    {% if medico_update.especialida == "especialidad" %}
+                        selected
+                    {% endif %}
+                > {{ especialidad }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <button type="submit" class="btn btn-secondary"> Actualizar </button>
+    </form>
+</body>
+</html>
